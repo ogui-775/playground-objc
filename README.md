@@ -52,7 +52,7 @@ If you use this option, the Ammonia daemon binary at `/private/var/ammonia/core/
 sh ./install.sh
 ```
 
-This builds everything and produces `PluginPlayground-1.1.1.pkg`. Run the `.pkg` to install. 
+This builds everything and produces `PluginPlayground-1.1.3.pkg`. Run the `.pkg` to install. 
 Uninstallation is as simple as `./uninstall.sh`.
 
 ## Documentation
