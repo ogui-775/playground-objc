@@ -1,6 +1,7 @@
 //Created by Salty on 8/25/26.
 
 #import "PPMainViewController.h"
+#import "../Services/PPPrivledgedWriter.h"
 
 @implementation PPNSSwitch
 @end
@@ -219,8 +220,8 @@
     [currentOptions setObject:@(self.pauseInjection) forKey:kPPOptionsDictPauseInjection];
     [currentOptions setObject:@(self.useLegacyAmmonia) forKey:kPPOptionsDictUseLegacyAmmonia];
     
-    [currentOptions writeToFile:kPPOptionsPath
-                     atomically:YES];
+    [PPPrivledgedWriter writeToPlistAtURL:[NSURL fileURLWithPath:kPPOptionsPath]
+                           withDictionary:currentOptions];
     
     [self reloadGlobalBlock];
     [self reloadTweaksList];
@@ -258,8 +259,8 @@
     NSMutableDictionary *currentOptions = [NSMutableDictionary dictionaryWithContentsOfFile:kPPOptionsPath];
     [currentOptions setObject:[array mutableCopy] forKey:kPPOptionsDictGlobalBlacklist];
     
-    [currentOptions writeToFile:kPPOptionsPath
-                     atomically:YES];
+    [PPPrivledgedWriter writeToPlistAtURL:[NSURL fileURLWithPath:kPPOptionsPath]
+                           withDictionary:currentOptions];
     
     [self.globalBlacklist removeAllObjects];
     [self.globalBlacklist addObjectsFromArray:array];

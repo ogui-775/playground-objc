@@ -1,6 +1,7 @@
 //Created by Salty on 8/26/26.
 
 #import "PPTweaksCollection.h"
+#import "PPPrivledgedWriter.h"
 
 @implementation PPTweaksCollection
 @synthesize isForLegacyAmmonia = _isForLegacyAmmonia;
@@ -61,10 +62,8 @@
     NSString *newPath = [tweakPath stringByAppendingPathExtension:@"disabled"];
     [self.collectionDictionary setObject:@NO forKey:newPath];
     
-    NSFileManager *fm = [NSFileManager defaultManager];
-    [fm moveItemAtPath:tweakPath
-                toPath:newPath
-                 error:nil];
+    [PPPrivledgedWriter changeFileExtensionForFileAtURL:[NSURL fileURLWithPath:tweakPath]
+                                                  toURL:[NSURL fileURLWithPath:newPath]];
 }
 
 - (void)enableTweakAtPath:(NSString *)tweakPath{
@@ -77,10 +76,8 @@
     NSString *newPath = [tweakPath stringByDeletingPathExtension];
     [self.collectionDictionary setObject:@YES forKey:newPath];
     
-    NSFileManager *fm = [NSFileManager defaultManager];
-    [fm moveItemAtPath:tweakPath
-                toPath:newPath
-                 error:nil];
+    [PPPrivledgedWriter changeFileExtensionForFileAtURL:[NSURL fileURLWithPath:tweakPath]
+                                                  toURL:[NSURL fileURLWithPath:newPath]];
 }
 
 - (void)packageTweakAtPath:(NSString *)tweakPath {

@@ -2,6 +2,7 @@
 
 #import "AppDelegate.h"
 #import "Controllers/PPMainViewController.h"
+#import "Services/PPPrivledgedWriter.h"
 
 @interface AppDelegate ()
 @property (strong) PPMainViewController *mainViewController;
@@ -19,8 +20,9 @@
     
     [self.mainViewController.view setFrame:self.window.contentView.bounds];
     [self.window.contentView setSubviews:@[self.mainViewController.view]];
+    
+    [PPPrivledgedWriter createMasterOptionsIfNotExists];
 }
-
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
 
