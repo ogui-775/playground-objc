@@ -227,7 +227,7 @@ static NSArray<NSString *> *gGlobalBlacklist = nil;
         for (NSString *component in components){
             if ([component isEqualToString:@"Frameworks"] || [component isEqualToString:@"PrivateFrameworks"]){
                 shouldBeLoadedToExe = NO;
-            } else if ([component isEqualToString:@"libexec"] || [component isEqualToString:@"sbin"]){
+            } else if ([component isEqualToString:@"libexec"] || [component isEqualToString:@"sbin"] || [component isEqualToString:@"DriverExtensions"]){
                 shouldBeLoadedToExe = NO;
             }
         }

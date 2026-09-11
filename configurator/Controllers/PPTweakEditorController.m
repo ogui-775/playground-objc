@@ -1,6 +1,7 @@
 //Created by Salty on 9/2/26.
 
 #import "PPTweakEditorController.h"
+#import "../Services/PPPrivledgedWriter.h"
 
 typedef enum : NSUInteger {
     Blacklist,
@@ -134,7 +135,7 @@ typedef enum : NSUInteger {
 }
 
 - (IBAction)saveChanges:(id)sender{
-    [self.internalTweakOptions writeToFile:self.optionsPath
-                                atomically:YES];
+    [PPPrivledgedWriter writeToPlistAtURL:[NSURL fileURLWithPath:self.optionsPath]
+                           withDictionary:self.internalTweakOptions];
 }
 @end
